@@ -1,0 +1,11 @@
+{
+  "name": "@odm/browser-extension",
+  "version": "0.0.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit --allowJs --checkJs --strict --exactOptionalPropertyTypes --noImplicitReturns --noUncheckedIndexedAccess --noPropertyAccessFromIndexSignature --noUnusedLocals --noUnusedParameters --module NodeNext --moduleResolution NodeNext --target ES2024 --types node scripts/build.mjs scripts/manifest-policy.mjs tests/manifest-policy.test.ts"
+  }
+}

@@ -1,0 +1,17 @@
+.git/**
+.kilo/**
+**/node_modules/**
+**/target/**
+**/gen/schemas/**
+**/dist/**
+**/coverage/**
+**/playwright-report/**
+**/test-results/**
+**/blob-report/**
+**/.cache/**
+**/.vite/**
+**/.playwright/**
+Cargo.lock
+pnpm-lock.yaml
+LICENSE
+blueprint.md

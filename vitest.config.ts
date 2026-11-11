@@ -1,0 +1,40 @@
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    allowOnly: false,
+    clearMocks: true,
+    environment: 'node',
+    exclude: [
+      '**/node_modules/**',
+      '**/target/**',
+      '**/dist/**',
+      '**/coverage/**',
+      '**/playwright-report/**',
+      '**/test-results/**',
+      '**/blob-report/**',
+      '**/.cache/**',
+      '**/.vite/**',
+    ],
+    fileParallelism: false,
+    globals: false,
+    hookTimeout: 10_000,
+    include: ['tests/scaffold/**/*.test.ts', 'apps/browser-extension/tests/**/*.test.ts'],
+    isolate: true,
+    maxConcurrency: 1,
+    maxWorkers: 1,
+    mockReset: true,
+    passWithNoTests: false,
+    pool: 'forks',
+    restoreMocks: true,
+    retry: 0,
+    sequence: {
+      concurrent: false,
+      shuffle: false,
+    },
+    testTimeout: 10_000,
+    unstubEnvs: true,
+    unstubGlobals: true,
+    watch: false,
+  },
+});

@@ -1,0 +1,49 @@
+# Dependency directories
+node_modules/
+.pnpm-store/
+
+# Rust and Tauri output
+target/
+**/gen/schemas/
+
+# Application build output
+dist/
+.vite/
+
+# Test output
+coverage/
+playwright-report/
+test-results/
+blob-report/
+.nyc_output/
+
+# Tool caches
+.cache/
+.eslintcache
+*.tsbuildinfo
+.turbo/
+.playwright/
+
+# Temporary files and logs
+.tmp/
+.temp/
+tmp/
+temp/
+*.log
+pnpm-debug.log*
+
+# Local environment overrides
+.env
+.env.*
+!.env.example
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Resolution inputs are intentionally committed
+!Cargo.lock
+!pnpm-lock.yaml

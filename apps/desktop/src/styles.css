@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans:
+    'Segoe UI Variable Text', 'Segoe UI Variable', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  background: #020617;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.shell-backdrop {
+  background-color: #020617;
+  background-image:
+    radial-gradient(circle at 12% 14%, rgb(34 211 238 / 14%), transparent 32rem),
+    radial-gradient(circle at 88% 82%, rgb(129 140 248 / 12%), transparent 34rem),
+    linear-gradient(145deg, #020617 0%, #0f172a 52%, #020617 100%);
+}
+
+::selection {
+  color: #020617;
+  background: #67e8f9;
+}

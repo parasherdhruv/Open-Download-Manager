@@ -1,0 +1,22 @@
+[workspace]
+resolver = '3'
+members = [
+  'crates/shared-types',
+  'crates/diagnostics',
+  'crates/protocol-http',
+  'crates/file-manager',
+  'crates/storage',
+  'crates/download-core',
+  'crates/download-scheduler',
+  'crates/ipc',
+  'crates/native-messaging',
+  'crates/media-detection',
+  'apps/desktop/src-tauri',
+]
+
+[workspace.package]
+version = '0.0.0'
+edition = '2024'
+rust-version = '1.99.1'
+license = 'Apache-2.0'
+publish = false
