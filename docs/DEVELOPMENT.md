@@ -1,6 +1,6 @@
 # Development Policy
 
-**Current status:** Wave 1 repository infrastructure is committed at `4b2aca0`, published as hosted `main`, and locally verified. The exact Cargo/pnpm workspaces, toolchain metadata, stable locks, zero-feature sources, scaffold tests, and root commands exist. Roadmap Phase 0 adds pinned continuous-validation definitions and dependency policy on a review branch; private vulnerability reporting is enabled, but independent review, merge, protected-check enforcement, and hosted workflow results are pending. Product functionality does not exist. ADRs 0001, 0002, and 0003 remain Proposed.
+**Current status:** Wave 1 repository infrastructure is committed at `4b2aca0`, published as hosted `main`, and locally verified. The exact Cargo/pnpm workspaces, toolchain metadata, stable locks, zero-feature sources, scaffold tests, and root commands exist. Roadmap Phase 0 adds pinned continuous-validation definitions and dependency policy on a review branch; private vulnerability reporting, exact branch protection, and the initial four hosted checks are verified. Independent review and merge remain pending. Product functionality does not exist. ADRs 0001, 0002, and 0003 remain Proposed.
 
 ## Baseline toolchain policy
 
@@ -216,7 +216,6 @@ Reference implementations may inform design, but implementation code with incomp
 
 ## Unresolved architectural decisions
 
-- Hosted branch-rule configuration and runner evidence for the Phase 0 review branch.
 - Reproducible Windows packaging environment and signing-key custody.
 - Toolchain and platform support beyond the pinned Windows-first Wave 1 baseline.
 

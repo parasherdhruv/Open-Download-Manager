@@ -2,7 +2,7 @@
 
 ## Current status
 
-Open Download Manager is at the **buildable repository scaffold / pre-alpha** milestone. Wave 1 workspace metadata, locks, zero-feature application surfaces, API-free crates, scaffold tests, and local command gates are committed at `4b2aca0`, published as hosted `main`, and locally verified. Roadmap Phase 0 adds governance and continuous-validation definitions on a review branch; private vulnerability reporting is enabled, but independent review, merge, branch enforcement, and hosted workflow results are pending. There is no download engine behavior, persistence, scheduling, filesystem product I/O, browser capture/native messaging, local IPC, media pipeline, AI, telemetry, updater/tray behavior, installer, publishing, or release.
+Open Download Manager is at the **buildable repository scaffold / pre-alpha** milestone. Wave 1 workspace metadata, locks, zero-feature application surfaces, API-free crates, scaffold tests, and local command gates are committed at `4b2aca0`, published as hosted `main`, and locally verified. Roadmap Phase 0 adds governance and continuous-validation definitions on a review branch; private vulnerability reporting, exact branch protection, and the initial four hosted checks are verified. Independent review and merge remain pending. There is no download engine behavior, persistence, scheduling, filesystem product I/O, browser capture/native messaging, local IPC, media pipeline, AI, telemetry, updater/tray behavior, installer, publishing, or release.
 
 ## Document authority
 
@@ -33,7 +33,7 @@ The terms **scaffolded** and **implemented** have the strict meanings defined in
 | [Test plan](TEST_PLAN.md)                     | Test layers, Wave 1 scaffold evidence, fixtures, and milestone validation   | Scaffold tests pass; product suites deferred            |
 | [Release plan](RELEASE_PLAN.md)               | Future quality, security, signing, and publishing gates                     | No release process or distributable artifact            |
 | [Roadmap](ROADMAP.md)                         | Ordered outcomes without delivery promises                                  | Wave 1 implemented locally; acceptance pending          |
-| [Repository governance](../GOVERNANCE.md)     | Maintainers, approvers, required checks, and security-response ownership    | Phase 0 policy defined; hosted enforcement unverified   |
+| [Repository governance](../GOVERNANCE.md)     | Maintainers, approvers, required checks, and security-response ownership    | Hosted controls active; independent review pending      |
 
 ## Decision records
 

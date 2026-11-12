@@ -55,7 +55,7 @@ This sequence was observed to pass on 2026-11-10 with Node `24.16.0`, pnpm `12.1
 | [`apps/browser-extension/`](apps/browser-extension/) | Inert manifest source/build and permission-policy tests                           | Future least-privilege extension; no runtime browser behavior |
 | [`crates/`](crates/)                                 | Ten dependency-free, API-free library packages                                    | Documented future Rust ownership boundaries                   |
 | [`tests/`](tests/)                                   | Topology, policy, resilience, regression, and deterministic-build scaffold tests  | Future cross-workspace product fixtures and integration tests |
-| [`.github/`](.github/)                               | Review ownership, dependency-update policy, and continuous-validation definitions | Hosted activation and enforcement remain unverified           |
+| [`.github/`](.github/)                               | Review ownership, dependency-update policy, and continuous-validation definitions | Hosted controls active; independent review and merge pending  |
 | [`docs/`](docs/)                                     | Product, architecture, security, test, and release specifications                 | Current documentation; hosted review and merge still due      |
 | [`docs/decisions/`](docs/decisions/)                 | Three Proposed architecture decisions                                             | Durable decisions only after acceptance by review and merge   |
 | [`blueprint.md`](blueprint.md)                       | Byte-preserved source vision                                                      | Long-range product input                                      |

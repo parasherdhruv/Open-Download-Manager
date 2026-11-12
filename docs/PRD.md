@@ -242,7 +242,7 @@ This is local implementation evidence without hosted review/default-branch merge
 
 ## Roadmap Phase 0: governance and continuous validation
 
-**Status:** Explicitly user-authorized in the current review branch under [Proposed ADR 0003](decisions/0003-continuous-validation-and-governance.md). Hosted `main`/upstream tracking and private vulnerability reporting are restored, but local definitions and policy tests do not prove independent review, merge, branch enforcement, or hosted workflow success.
+**Status:** Explicitly user-authorized in the current review branch under [Proposed ADR 0003](decisions/0003-continuous-validation-and-governance.md). Hosted `main`/upstream tracking, private vulnerability reporting, exact branch protection, and the initial four hosted checks are verified. Independent review and merge remain pending.
 
 This Phase 0 is the post-Wave 1 phase in the implementation-ready roadmap, not the earlier Wave 0 documentation milestone.
 

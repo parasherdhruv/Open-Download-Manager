@@ -2,7 +2,7 @@
 
 ## Current status
 
-Open Download Manager is a pre-alpha repository scaffold with no released product. The Wave 1 scaffold commit `4b2aca0` is published as the hosted `main` branch, local upstream tracking is repaired, and private vulnerability reporting was verified enabled on 2026-11-12. The Phase 0 governance/workflow change is still unmerged, so hosted enforcement, independent review, merge, and continuous-integration results are not yet evidenced.
+Open Download Manager is a pre-alpha repository scaffold with no released product. The Wave 1 scaffold commit `4b2aca0` is published as the hosted `main` branch, local upstream tracking is repaired, private vulnerability reporting is enabled, exact branch protection is active, and the initial four hosted checks passed on Phase 0 commit `c747844`. The Phase 0 governance/workflow change is still awaiting independent review and merge.
 
 This policy implements the ownership model proposed by [ADR 0003](docs/decisions/0003-continuous-validation-and-governance.md). The ADR remains Proposed until independent review and hosted default-branch merge.
 
@@ -29,7 +29,7 @@ The current single-maintainer declaration means a maintainer-authored ADR cannot
 
 ## Required hosted controls
 
-The hosted `main` branch is restored. Repository rules must:
+Hosted `main` protection was verified on 2026-11-12 to:
 
 1. require pull requests rather than direct changes to protected `main`;
 2. require an independent code-owner approval and dismiss stale approvals after relevant changes;

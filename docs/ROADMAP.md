@@ -1,6 +1,6 @@
 # Roadmap
 
-**Current status:** Buildable repository scaffold / pre-alpha. Wave 1 repository infrastructure is committed at `4b2aca0`, published as hosted `main`, and locally verified. Roadmap Phase 0 governance and continuous-validation definitions are present on a review branch; private vulnerability reporting is enabled, but independent review, merge, branch enforcement, and hosted workflow results are pending. Product functionality is not implemented. This roadmap orders outcomes and gates; it is not a delivery schedule or a release claim.
+**Current status:** Buildable repository scaffold / pre-alpha. Wave 1 repository infrastructure is committed at `4b2aca0`, published as hosted `main`, and locally verified. Roadmap Phase 0 governance and continuous-validation definitions are present on a review branch; private vulnerability reporting, exact branch protection, and the initial four hosted checks are verified. Independent review and merge remain pending. Product functionality is not implemented. This roadmap orders outcomes and gates; it is not a delivery schedule or a release claim.
 
 ## Status vocabulary
 
@@ -59,7 +59,7 @@ Local exit evidence: every binary criterion in [`PRD.md`](PRD.md) and every requ
 
 ## Roadmap Phase 0: governance and continuous validation
 
-**State:** Authorized current review branch under [Proposed ADR 0003](decisions/0003-continuous-validation-and-governance.md). Definitions and policy gates are locally verified, hosted `main`/upstream tracking is restored, and private vulnerability reporting is enabled. Independent review, merge, protected-check enforcement, and hosted workflow results remain pending.
+**State:** Authorized current review branch under [Proposed ADR 0003](decisions/0003-continuous-validation-and-governance.md). Definitions and policy gates are locally verified; hosted `main`/upstream tracking, private vulnerability reporting, exact branch protection, and the initial four hosted checks are verified. Independent review and merge remain pending.
 
 Implemented local-definition outcomes:
 
@@ -70,7 +70,7 @@ Implemented local-definition outcomes:
 - CODEOWNERS plus documented maintainer, independent ADR approval, release-approval, security-response, and required-check policy.
 - Scaffold regressions for action pins, workflow permissions/triggers/timeouts, dependency automation, ownership, and license policy.
 
-Local exit evidence cannot establish the hosted gate. Restoring `main`/upstream tracking and enabling private vulnerability reporting satisfy two hosted prerequisites. Phase 0 completes only after the scaffold and Phase 0 change receive independent review, the exact required checks and code-owner rule are enforced, hosted runs pass, and the change is merged. Until then, ADR acceptance is not claimed.
+Hosted `main`/upstream tracking, private vulnerability reporting, the exact required checks/code-owner rule, and an initial passing hosted run satisfy the enforceable repository prerequisites. Phase 0 completes only after the scaffold and Phase 0 change receive independent review and the protected change is merged. Until then, ADR acceptance is not claimed.
 
 ## Wave 2: safe single-stream foundation
 

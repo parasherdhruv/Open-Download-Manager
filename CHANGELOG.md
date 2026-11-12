@@ -15,7 +15,7 @@ The project has not published a version or release. Entries under **Unreleased**
 - Wave 1 buildable repository infrastructure: exact Cargo/pnpm membership, pinned tools and stable locks, ten API-free Rust libraries, static desktop shell, inert extension manifest, least-privilege policy tests, and locally passing command gates.
 - Local Windows 11 scaffold evidence recorded for local commit `4b2aca0`; ADRs 0001 and 0002 remain Proposed because hosted review and default-branch merge are not evidenced.
 - Roadmap Phase 0 governance and continuous-validation definitions: Proposed ADR 0003, explicit ownership roles, CODEOWNERS, pinned Windows CI, secret/dependency/license/source policy, and reviewed dependency-update configuration.
-- Hosted `main` and upstream tracking restored from scaffold commit `4b2aca0`; private vulnerability reporting enabled. Independent review, Phase 0 merge, protected-check enforcement, and hosted workflow results remain pending.
+- Hosted `main` and upstream tracking restored from scaffold commit `4b2aca0`; private vulnerability reporting, exact branch protection, and the initial four hosted checks verified. Independent review and Phase 0 merge remain pending.
 
 ### Product functionality
 

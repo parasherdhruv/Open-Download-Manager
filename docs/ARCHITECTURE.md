@@ -1,6 +1,6 @@
 # Architecture
 
-**Status:** Buildable repository scaffold / pre-alpha. Wave 1's exact workspace, zero-feature applications, API-free crates, scaffold tests, and local gates are committed at `4b2aca0`, published as hosted `main`, and locally verified. Roadmap Phase 0 governance and continuous-validation definitions exist on a review branch; private vulnerability reporting is enabled, but independent review, merge, branch enforcement, and hosted workflow results are not yet evidenced. No product protocol or download-manager behavior exists. ADRs 0001, 0002, and 0003 remain Proposed.
+**Status:** Buildable repository scaffold / pre-alpha. Wave 1's exact workspace, zero-feature applications, API-free crates, scaffold tests, and local gates are committed at `4b2aca0`, published as hosted `main`, and locally verified. Roadmap Phase 0 governance and continuous-validation definitions exist on a review branch; private vulnerability reporting, exact branch protection, and the initial four hosted checks are verified. Independent review and merge remain pending. No product protocol or download-manager behavior exists. ADRs 0001, 0002, and 0003 remain Proposed.
 
 ## Architectural goals
 

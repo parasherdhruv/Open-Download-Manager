@@ -216,7 +216,7 @@ Limits must fail explicitly, be cancellable, and avoid integer overflow. User co
 - Verify packaged contents, native-host registration, permissions, updates, uninstall, and clean-machine installation.
 - Never expose signing, store, or provider credentials to untrusted builds or logs.
 
-Wave 1 added no CI. Roadmap Phase 0 now defines read-only continuous-validation and supply-chain workflows with immutable action/tool pins, bounded jobs, no privileged untrusted-code trigger, and no release credentials. Hosted `main` exists and private vulnerability reporting is enabled, but independent review, Phase 0 merge, branch enforcement, and hosted workflow results are not yet evidenced. No signing, publishing, installer, update, or release mechanism exists. Future release gates are in [`RELEASE_PLAN.md`](RELEASE_PLAN.md).
+Wave 1 added no CI. Roadmap Phase 0 now defines read-only continuous-validation and supply-chain workflows with immutable action/tool pins, bounded jobs, no privileged untrusted-code trigger, and no release credentials. Hosted `main`, private vulnerability reporting, exact branch protection, and the initial four hosted checks are verified; independent review and Phase 0 merge remain pending. No signing, publishing, installer, update, or release mechanism exists. Future release gates are in [`RELEASE_PLAN.md`](RELEASE_PLAN.md).
 
 ## Security verification matrix
 

@@ -1,6 +1,6 @@
 # Test Plan
 
-**Current status:** Wave 1 scaffold tests and local command gates are implemented at `4b2aca0`, published as hosted `main`, and locally verified. Roadmap Phase 0 adds locally passing repository-automation and license-policy regressions plus pinned workflow definitions on a review branch. Private vulnerability reporting is enabled, but independent review, merge, protected-check enforcement, and hosted workflow results are pending. No download fixture server, product integration/resilience test, benchmark, or product behavior exists.
+**Current status:** Wave 1 scaffold tests and local command gates are implemented at `4b2aca0`, published as hosted `main`, and locally verified. Roadmap Phase 0 adds locally passing repository-automation and license-policy regressions plus pinned workflow definitions on a review branch. Private vulnerability reporting, exact branch protection, and the initial four hosted checks are verified; independent review and merge remain pending. No download fixture server, product integration/resilience test, benchmark, or product behavior exists.
 
 ## Objectives
 
@@ -177,6 +177,19 @@ The broad preliminary local `gitleaks dir .` invocation traversed ignored `targe
 
 The two remaining JavaScript advisories are development-only and have no product-runtime path because no product JavaScript is shipped. They remain tracked debt rather than hidden exceptions: Dependabot proposes updates, finite workflow timeouts bound denial-of-service impact, and release review must resolve or explicitly reassess them. No release claim exists.
 
+### Observed hosted Phase 0 results on 2026-11-12
+
+Draft pull request [#1](https://github.com/parasherdhruv/Open-Download-Manager/pull/1) ran the initial workflow revision at commit `c747844`:
+
+| Required check                 | Hosted result    |
+| ------------------------------ | ---------------- |
+| `Windows scaffold gate`        | Passed in 10m07s |
+| `Secret scan`                  | Passed in 5s     |
+| `Rust dependency policy`       | Passed in 20s    |
+| `JavaScript dependency policy` | Passed in 41s    |
+
+GitHub `main` protection was verified with strict up-to-date status, all four exact required contexts, one approving review, required code-owner review, last-push approval, stale-review dismissal, conversation resolution, administrator enforcement, and force-push/deletion denial. Private vulnerability reporting was independently read back as enabled. These controls keep every later pull-request revision gated; they do not replace the still-missing independent reviewer or prove a merge.
+
 ## Wave 1 scaffold evidence
 
 Wave 1's implemented tests validate repository infrastructure and the zero-feature security posture only. They do not validate product behavior.
@@ -280,7 +293,7 @@ corepack pnpm --filter @odm/desktop exec tauri build --no-bundle -- --locked
 
 Crash, restart/recovery, cancellation, download integrity, HTTP/network, DNS/redirect, filesystem product I/O, database/migration, scheduler, native-host/IPC, browser-capture, media, installer, updater, and release tests are deferred because Wave 1 implements none of those behaviors. Adding empty or simulated tests for absent behavior would create misleading evidence, not coverage.
 
-The controlled network fixture and product resilience plans below begin with their owning product slices. Packaging and release gates remain later reviewed work. Roadmap Phase 0 defines dependency audit, license/secret scanning, and CI for the scaffold, but hosted execution remains unevidenced until reviewed runs exist on the Phase 0 pull request.
+The controlled network fixture and product resilience plans below begin with their owning product slices. Packaging and release gates remain later reviewed work. Roadmap Phase 0 defines dependency audit, license/secret scanning, and CI for the scaffold; its initial hosted execution is evidenced above, and branch protection requires every later pull-request revision to pass before merge.
 
 ## Component coverage plan
 

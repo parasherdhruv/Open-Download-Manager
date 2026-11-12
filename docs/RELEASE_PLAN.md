@@ -1,6 +1,6 @@
 # Release Plan
 
-**Current status:** No release process is implemented. Wave 1 local web, Cargo, and Tauri no-bundle builds pass, and Roadmap Phase 0 defines unprivileged repository validation on a review branch. ODM still has no distributable bundle, release version, installer, portable package, packaged extension, signature, checksum set for distribution, update channel, release upload, or published release. Hosted `main` exists and private vulnerability reporting is enabled, but Phase 0 workflow results and merge are not yet evidenced.
+**Current status:** No release process is implemented. Wave 1 local web, Cargo, and Tauri no-bundle builds pass, and Roadmap Phase 0 defines unprivileged repository validation on a review branch. ODM still has no distributable bundle, release version, installer, portable package, packaged extension, signature, checksum set for distribution, update channel, release upload, or published release. Hosted `main`, private vulnerability reporting, exact branch protection, and the initial four hosted checks are verified, but independent review and Phase 0 merge remain pending.
 
 ## Wave 0 exclusion
 

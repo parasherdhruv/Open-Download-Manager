@@ -7,7 +7,7 @@
 
 ## Context
 
-Wave 1 established locally verified Cargo and pnpm workspaces, a zero-feature desktop and extension scaffold, and an exact root command gate. Commit `4b2aca0` is now published as hosted `main`, local upstream tracking is repaired, and private vulnerability reporting was verified enabled on 2026-11-12. No independent review, Phase 0 merge, branch protection, or hosted workflow result is yet evidenced. [ADR 0001](0001-repository-scaffold.md) and [ADR 0002](0002-buildable-workspace-scaffold.md) remain Proposed.
+Wave 1 established locally verified Cargo and pnpm workspaces, a zero-feature desktop and extension scaffold, and an exact root command gate. Commit `4b2aca0` is now published as hosted `main`; local upstream tracking, private vulnerability reporting, exact branch protection, and the initial four hosted checks were verified on 2026-11-12. Independent review and Phase 0 merge are not yet evidenced. [ADR 0001](0001-repository-scaffold.md) and [ADR 0002](0002-buildable-workspace-scaffold.md) remain Proposed.
 
 The implementation-ready roadmap calls its first post-scaffold slice **Phase 0: Governance and continuous validation**. This phase name is distinct from the earlier **Wave 0** documentation milestone. Wave 0's historical exclusion of workflows remains true; Phase 0 is the separately authorized follow-on that may now automate the locally proven Wave 1 commands.
 
@@ -93,13 +93,10 @@ Untrusted pull requests use the `pull_request` event only. `pull_request_target`
 
 ## Hosted activation requirements
 
-Hosted `main`/upstream tracking and the private vulnerability-reporting route were verified on 2026-11-12. Phase 0 cannot satisfy its remaining hosted exit gate until an authorized maintainer:
+Hosted `main`/upstream tracking, private vulnerability reporting, exact protected checks/review policy, and an initial passing hosted run were verified on 2026-11-12. Branch protection keeps later revisions subject to the same controls. Phase 0 cannot satisfy its remaining hosted exit gate until an authorized maintainer:
 
-1. obtains independent review of the scaffold and this Phase 0 change;
-2. requires the documented Windows, secret, Rust dependency, and JavaScript dependency checks;
-3. requires independent code-owner review and dismissal of stale approvals;
-4. observes the hosted checks passing on the reviewed revision; and
-5. merges the complete change into hosted `main` without bypassing those controls.
+1. obtains independent code-owner review of the scaffold and this complete Phase 0 change; and
+2. merges the protected revision into hosted `main` without bypassing those controls.
 
 These are hosted administrative actions. Local source changes and passing local policy tests do not claim they occurred.
 
