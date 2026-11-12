@@ -1,6 +1,6 @@
 # Release Plan
 
-**Current status:** No release process is implemented. Wave 1 local web, Cargo, and Tauri no-bundle builds pass, but ODM has no distributable bundle, release version, installer, portable package, packaged extension, signature, checksum set for distribution, update channel, release upload, or published release.
+**Current status:** No release process is implemented. Wave 1 local web, Cargo, and Tauri no-bundle builds pass, and Roadmap Phase 0 defines unprivileged repository validation on a review branch. ODM still has no distributable bundle, release version, installer, portable package, packaged extension, signature, checksum set for distribution, update channel, release upload, or published release. Hosted `main` exists and private vulnerability reporting is enabled, but Phase 0 workflow results and merge are not yet evidenced.
 
 ## Wave 0 exclusion
 
@@ -13,6 +13,8 @@ The Wave 0 repository-scaffold milestone was documentation and governance only. 
 - Claiming reproducible builds or verified distributable artifacts when Wave 0 had no build.
 
 Wave 0 documented future gates but did not satisfy them on behalf of future code.
+
+Roadmap Phase 0 continuous-validation workflows are a later repository-control slice, not release automation. They hold no signing or publishing permission, produce no distributable artifact, and do not satisfy any promotion, installer, signature, provenance, or publication gate in this document.
 
 ## Release principles
 

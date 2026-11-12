@@ -6,9 +6,9 @@ Open Download Manager (ODM) is a planned, local-first download manager for Windo
 
 **Buildable repository scaffold / pre-alpha. Wave 1 infrastructure is implemented and locally verified; product functionality is unavailable.**
 
-The working tree contains locked Cargo and pnpm workspaces, exact toolchain metadata, ten API-free Rust libraries, a static React/Tailwind desktop pre-alpha shell, a zero-feature Tauri composition root, an inert three-key Manifest V3 package, and automated scaffold checks. The shell explicitly states that downloads are unavailable. These artifacts implement repository infrastructure only: there is no download/network engine, persistence, scheduler, filesystem product I/O, browser capture, native messaging, local IPC, media handling, AI, telemetry, updater, tray, installer, release, CI, or publishing.
+The repository contains locked Cargo and pnpm workspaces, exact toolchain metadata, ten API-free Rust libraries, a static React/Tailwind desktop pre-alpha shell, a zero-feature Tauri composition root, an inert three-key Manifest V3 package, automated scaffold checks, and Roadmap Phase 0 governance and continuous-validation definitions. The shell explicitly states that downloads are unavailable. These artifacts implement repository infrastructure only: there is no download/network engine, persistence, scheduler, filesystem product I/O, browser capture, native messaging, local IPC, media handling, AI, telemetry, updater, tray, installer, release, or publishing.
 
-The unchanged [`blueprint.md`](blueprint.md) is the source vision. The current working-tree ADRs remain Proposed; [ADR 0002](docs/decisions/0002-buildable-workspace-scaffold.md) records the exact user-authorized Wave 1 scope and local implementation evidence without claiming approval, acceptance, review, or merge. See [`AGENTS.md`](AGENTS.md) for the complete precedence and same-change ADR policy.
+The unchanged [`blueprint.md`](blueprint.md) is the source vision. Wave 1 commit `4b2aca0` is published as hosted `main`, and private vulnerability reporting is enabled. Independent review and a Phase 0 merge are not yet evidenced. All three ADRs remain Proposed; [ADR 0002](docs/decisions/0002-buildable-workspace-scaffold.md) records the Wave 1 scope and [ADR 0003](docs/decisions/0003-continuous-validation-and-governance.md) records the current governance/automation scope without claiming acceptance. See [`AGENTS.md`](AGENTS.md) for the complete precedence and same-change ADR policy.
 
 ## Planned product principles
 
@@ -49,15 +49,16 @@ This sequence was observed to pass on 2026-11-10 with Node `24.16.0`, pnpm `12.1
 
 ## Repository map
 
-| Path                                                 | Current contents                                                                 | Boundary                                                       |
-| ---------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| [`apps/desktop/`](apps/desktop/)                     | Static React/Tailwind shell, zero-feature Tauri package, and scaffold tests      | Future desktop composition root; no download-manager behavior  |
-| [`apps/browser-extension/`](apps/browser-extension/) | Inert manifest source/build and permission-policy tests                          | Future least-privilege extension; no runtime browser behavior  |
-| [`crates/`](crates/)                                 | Ten dependency-free, API-free library packages                                   | Documented future Rust ownership boundaries                    |
-| [`tests/`](tests/)                                   | Topology, policy, resilience, regression, and deterministic-build scaffold tests | Future cross-workspace product fixtures and integration tests  |
-| [`docs/`](docs/)                                     | Product, architecture, security, test, and release specifications                | Current working-tree documentation; review and merge still due |
-| [`docs/decisions/`](docs/decisions/)                 | Two Proposed architecture decisions                                              | Durable decisions only after acceptance by review and merge    |
-| [`blueprint.md`](blueprint.md)                       | Byte-preserved source vision                                                     | Long-range product input                                       |
+| Path                                                 | Current contents                                                                  | Boundary                                                      |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| [`apps/desktop/`](apps/desktop/)                     | Static React/Tailwind shell, zero-feature Tauri package, and scaffold tests       | Future desktop composition root; no download-manager behavior |
+| [`apps/browser-extension/`](apps/browser-extension/) | Inert manifest source/build and permission-policy tests                           | Future least-privilege extension; no runtime browser behavior |
+| [`crates/`](crates/)                                 | Ten dependency-free, API-free library packages                                    | Documented future Rust ownership boundaries                   |
+| [`tests/`](tests/)                                   | Topology, policy, resilience, regression, and deterministic-build scaffold tests  | Future cross-workspace product fixtures and integration tests |
+| [`.github/`](.github/)                               | Review ownership, dependency-update policy, and continuous-validation definitions | Hosted activation and enforcement remain unverified           |
+| [`docs/`](docs/)                                     | Product, architecture, security, test, and release specifications                 | Current documentation; hosted review and merge still due      |
+| [`docs/decisions/`](docs/decisions/)                 | Three Proposed architecture decisions                                             | Durable decisions only after acceptance by review and merge   |
+| [`blueprint.md`](blueprint.md)                       | Byte-preserved source vision                                                      | Long-range product input                                      |
 
 The exact eleven-member Cargo workspace, two-application pnpm workspace, current edge-free graph, and allowed future graph are defined in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
@@ -79,6 +80,7 @@ The exact eleven-member Cargo workspace, two-application pnpm workspace, current
 ## Governance
 
 - [Contributing](CONTRIBUTING.md)
+- [Repository governance](GOVERNANCE.md)
 - [Contributor Code of Conduct](CODE_OF_CONDUCT.md)
 - [Vulnerability disclosure policy](SECURITY.md)
 - [Changelog](CHANGELOG.md)

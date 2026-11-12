@@ -6,11 +6,13 @@ Open Download Manager is a buildable repository scaffold at a pre-alpha mileston
 
 Security defects in the specifications, repository governance, build scaffold, or zero-feature policy baseline can still be reported. This policy will be updated with supported-version information before any release support claim is made.
 
+Repository security-response ownership is documented in [`GOVERNANCE.md`](GOVERNANCE.md). That ownership identifies who coordinates the existing private route; it does not create a support SLA or a released security boundary.
+
 ## Reporting a vulnerability
 
 Do not publish vulnerability details, proof-of-concept material, credentials, sensitive URLs, or personal data in an issue, pull request, discussion, or other public channel.
 
-Use the repository hosting service's **private vulnerability reporting** feature when it is displayed in the repository's security interface. This instruction points to a platform capability rather than an unpublished email address; the repository currently has no dedicated security mailbox.
+Use the repository hosting service's **private vulnerability reporting** feature, verified enabled on 2026-11-12. This instruction points to a platform capability rather than an unpublished email address; the repository currently has no dedicated security mailbox.
 
 If no private vulnerability-reporting feature is available, open a public issue titled **Private security report channel requested**. Include only a request for a private channel and no technical details or identifying information. A maintainer can then provide an available private route. Do not send details until that route is established.
 

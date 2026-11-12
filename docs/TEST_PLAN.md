@@ -1,6 +1,6 @@
 # Test Plan
 
-**Current status:** Wave 1 scaffold tests and local command gates are implemented and locally verified. Vitest, Playwright, Cargo, Tauri, workspace topology, policy, and deterministic-build evidence exists for repository infrastructure only. No download fixture server, product integration/resilience test, benchmark, or CI workflow exists, and no product behavior has been tested.
+**Current status:** Wave 1 scaffold tests and local command gates are implemented at `4b2aca0`, published as hosted `main`, and locally verified. Roadmap Phase 0 adds locally passing repository-automation and license-policy regressions plus pinned workflow definitions on a review branch. Private vulnerability reporting is enabled, but independent review, merge, protected-check enforcement, and hosted workflow results are pending. No download fixture server, product integration/resilience test, benchmark, or product behavior exists.
 
 ## Objectives
 
@@ -52,7 +52,7 @@ Documentation-only changes use the following read-only checks in addition to the
 | Validation area | Evidence                                                                                    | Pass condition                                                                                                       |
 | --------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | Inventory       | Markdown inventory, Git status/diff, and generated-output scan                              | Only scoped documentation is edited; implementation/config/locks and protected paths are unchanged; output is absent |
-| Status          | Current-state and ADR-language scan                                                         | Wave 1 infrastructure is implemented; product behavior is unavailable; both ADRs remain Proposed                     |
+| Status          | Current-state and ADR-language scan                                                         | Wave 1 infrastructure is implemented; product behavior is unavailable; all three ADRs remain Proposed                |
 | Integration     | Relative Markdown links and cross-document authority/version/ownership consistency          | Every local link resolves and governing statements do not conflict                                                   |
 | Regression      | Blueprint/lock digests, command consistency, placeholder-token, whitespace, and diff checks | Preserved inputs match expected values and text hygiene passes                                                       |
 
@@ -82,7 +82,7 @@ foreach ($pattern in @('buildable repository scaffold', 'pre-alpha', 'Wave 1', '
 $development = [IO.File]::ReadAllText('docs/DEVELOPMENT.md')
 $toolPatterns = @('24\.16\.0', '12\.18\.0', '1\.99\.1', 'edition 2024', 'resolver 3', '2\.12\.5', '2\.7\.4', '2\.12\.4', '19\.3\.1', '6\.0\.3', '8\.3\.7', '4\.3\.5', '5\.1\.0', '1\.65\.0', '9\.39\.5')
 foreach ($pattern in $toolPatterns) { if ($development -notmatch $pattern) { throw "Missing toolchain text: $pattern" } }
-$adrPaths = @('docs/decisions/0001-repository-scaffold.md', 'docs/decisions/0002-buildable-workspace-scaffold.md')
+$adrPaths = @('docs/decisions/0001-repository-scaffold.md', 'docs/decisions/0002-buildable-workspace-scaffold.md', 'docs/decisions/0003-continuous-validation-and-governance.md')
 foreach ($path in $adrPaths) {
   $adr = [IO.File]::ReadAllText($path)
   if ($adr -notmatch '(?m)^- \*\*Status:\*\* Proposed\r?$') { throw "ADR is not Proposed: $path" }
@@ -137,19 +137,45 @@ if ($missing.Count) { $missing; throw 'Broken relative links' }
 $expected = '57C6C640AFAFE7E55C74A51E1008B4338B1FC3B78CF8DE0642AF8ABA9C3B488D'
 $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath 'blueprint.md').Hash
 if ($actual -ne $expected) { throw "blueprint.md SHA-256 mismatch: $actual" }
-$lockHashes = @{
-  'Cargo.lock' = 'BB7B4118A417CEAEB2581B76BAA1B2AA3402B85C0CFBE251104037B01B90E9B2'
-  'pnpm-lock.yaml' = 'D3153A36A4D3A80E576364B32AB08F17DD16E1D78E1933D5D8400762D649930A'
-}
-foreach ($path in $lockHashes.Keys) {
-  $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath $path).Hash
-  if ($actual -ne $lockHashes[$path]) { throw "$path SHA-256 mismatch: $actual" }
-}
 git diff -- blueprint.md
 git diff -- Cargo.lock pnpm-lock.yaml
 ```
 
-The blueprint digest originated with Wave 0 task provenance, and the lock digests record the observed Wave 1 inputs. Digests validate bytes independently of staging or repository-history state.
+The blueprint digest originated with Wave 0 task provenance and remains a protected byte-level invariant. The historical Wave 1 lock digests were Cargo `BB7B4118A417CEAEB2581B76BAA1B2AA3402B85C0CFBE251104037B01B90E9B2` and pnpm `D3153A36A4D3A80E576364B32AB08F17DD16E1D78E1933D5D8400762D649930A`. Phase 0 intentionally changes pnpm policy and remediates a transitive advisory, so current lock review uses the scoped diff, frozen installation, offline importer validation, and advisory/license results rather than pretending the historical pnpm digest remains current.
+
+## Phase 0 repository-control evidence
+
+Phase 0 adds scaffold policy coverage, not product tests:
+
+| Evidence area         | Required automated evidence                                               | Pass condition                                                                                                                                                                                           |
+| --------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Workflow security     | Inventory and inspect every workflow plus synthetic violations            | Only full action SHAs, read-only permissions, non-persisted credentials, unprivileged triggers, explicit runner labels, finite timeouts, locked/frozen commands, and pinned downloaded-tool digests pass |
+| Governance ownership  | Inspect CODEOWNERS, governance, and required paths                        | One syntactically valid default owner covers workflows, security, ADRs, manifests, locks, toolchains, and dependency policy; independent ADR and blocked release approval are explicit                   |
+| Dependency automation | Inspect Dependabot and pnpm workspace policy                              | Exactly npm, Cargo, and GitHub Actions receive weekly proposals; no auto-merge exists; release age is nonzero and exclusions/overrides are exact                                                         |
+| JavaScript licenses   | Synthetic allowed/unknown/malformed inventories plus live installed graph | Only reviewed expressions pass; malformed or unknown expressions fail without printing dependency paths                                                                                                  |
+| Rust dependencies     | cargo-deny `0.20.2` over locked Windows-target metadata                   | Advisories, disallowed licenses, wildcard requirements, and unknown registry/Git sources fail; no ignore entry hides an advisory                                                                         |
+| Secrets               | Gitleaks `8.30.1` over full Git history                                   | No detected secret; redaction is enabled and no baseline suppresses a finding                                                                                                                            |
+
+Policy-test success proves the repository definitions reject sampled regressions. Only a hosted run can prove GitHub accepted and executed a workflow, and only hosted administrative inspection can prove branch rules or private reporting are active.
+
+### Observed local Phase 0 results on 2026-11-11
+
+The supported Windows environment used Node `24.16.0`, pnpm `12.18.0`, Rust/Cargo `1.99.1`, the installed MSVC/SDK/WebView2 prerequisites, actionlint `1.7.7`, Gitleaks `8.30.1`, and cargo-deny `0.20.2`.
+
+| Command or category                                          | Observed result                                                                                                                                                                                                                        |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `corepack pnpm install --frozen-lockfile --ignore-scripts`   | Passed after the reviewed lock update; pnpm installed 518 packages while enforcing the strict seven-day release-age policy against the loaded lockfile                                                                                 |
+| `corepack pnpm check`                                        | Passed; Vitest ran 124 tests across 11 files with no skips, Playwright ran one loopback-only smoke, Cargo ran 11 intentionally empty harnesses, both web apps built, and locked Tauri no-bundle build passed                           |
+| `corepack pnpm audit:js`                                     | High/critical gate passed after overriding `re2js` to patched `2.8.7`; one low KaTeX advisory (`GHSA-238p-pmpm-9mq7`) and one moderate minimatch advisory (`GHSA-g3hv-75wg-m249`) remain in dev-only tooling below the configured gate |
+| `corepack pnpm licenses:js`                                  | Passed for 435 package records across 11 reviewed license expressions; synthetic unknown, empty, malformed, mismatched, and missing-version inventories failed                                                                         |
+| `cargo-deny --locked check advisories bans licenses sources` | Passed with no advisory, license, ban, or source error; duplicate-version warnings remain for `getrandom`, `hashbrown`, `indexmap`, `miniz_oxide`, and `syn` in the locked Tauri graph                                                 |
+| actionlint `1.7.7`                                           | Passed both workflow files after the downloaded Windows binary matched its published SHA-256                                                                                                                                           |
+| Gitleaks `8.30.1`                                            | Full tracked history and every Git-selected changed/untracked nonignored source file passed with redaction and no detected secret; the Linux workflow archive and local Windows archive matched their published SHA-256 values         |
+| Protected inputs                                             | `Cargo.lock` and `blueprint.md` retained their historical hashes; `pnpm-lock.yaml` changed only for the reviewed `re2js` security resolution and workspace policy snapshot                                                             |
+
+The broad preliminary local `gitleaks dir .` invocation traversed ignored `target/` compiler output and reported one binary false positive in a Rust metadata file. That invocation is not used as pass evidence. The hosted definition scans complete tracked history, while the local current-change scan used Git's nonignored source inventory; neither policy adds a secret baseline or source allowlist.
+
+The two remaining JavaScript advisories are development-only and have no product-runtime path because no product JavaScript is shipped. They remain tracked debt rather than hidden exceptions: Dependabot proposes updates, finite workflow timeouts bound denial-of-service impact, and release review must resolve or explicitly reassess them. No release claim exists.
 
 ## Wave 1 scaffold evidence
 
@@ -214,6 +240,16 @@ corepack pnpm check
 
 `corepack pnpm check` is the required aggregate gate. It expands to every constituent in the exact order defined by [`DEVELOPMENT.md`](DEVELOPMENT.md); `test` expands to its four documented scaffold suites. Every named constituent is required even when invoked through an aggregate. A missing script, missing workspace, required skip, ignored exit code, permissive `--if-present`, or silent platform skip fails the gate.
 
+The separate Phase 0 dependency-policy commands are:
+
+```powershell
+corepack pnpm audit:js
+corepack pnpm licenses:js
+corepack pnpm audit:rust
+```
+
+The networked advisory commands are not `check` constituents. They require explicit registry/advisory provisioning and are independently gated by the supply-chain workflow. The deterministic license command operates on the installed frozen graph.
+
 The topology constituent runs `corepack pnpm install --lockfile-only --frozen-lockfile --offline --ignore-scripts` through an argument array, hashes `pnpm-lock.yaml` before/after, and requires byte identity. Despite pnpm's `install` subcommand name, `--lockfile-only` performs no dependency installation; `--frozen-lockfile` forbids regeneration, `--offline` forbids public registry access, and `--ignore-scripts` forbids lifecycle execution. A synthetic exact-workspace copy proves the command succeeds without creating `node_modules`, then proves a changed importer fails without changing the lock.
 
 The underlying locked Rust/Tauri forms are also contractual:
@@ -244,7 +280,7 @@ corepack pnpm --filter @odm/desktop exec tauri build --no-bundle -- --locked
 
 Crash, restart/recovery, cancellation, download integrity, HTTP/network, DNS/redirect, filesystem product I/O, database/migration, scheduler, native-host/IPC, browser-capture, media, installer, updater, and release tests are deferred because Wave 1 implements none of those behaviors. Adding empty or simulated tests for absent behavior would create misleading evidence, not coverage.
 
-The controlled network fixture and product resilience plans below begin with their owning product slices. Dependency-audit, license-scanner automation, CI, packaging, and release gates also remain later reviewed work. A later reviewed CI change may automate the now-verified local Wave 1 commands.
+The controlled network fixture and product resilience plans below begin with their owning product slices. Packaging and release gates remain later reviewed work. Roadmap Phase 0 defines dependency audit, license/secret scanning, and CI for the scaffold, but hosted execution remains unevidenced until reviewed runs exist on the Phase 0 pull request.
 
 ## Component coverage plan
 
@@ -341,6 +377,6 @@ A behavior can be called implemented only when:
 - Product browser-compatibility versions and clean-machine environment matrix beyond the Wave 1 local Chromium smoke.
 - Coverage thresholds based on risk rather than an arbitrary repository-wide percentage.
 - Benchmark hardware/network baselines and regression tolerances.
-- Security scanner, dependency-audit, and license-check triage policy.
+- Hosted runner/branch-rule evidence and advisory triage history after the Phase 0 definitions are activated.
 
 These are genuine future product, resilience, compatibility, and release-test decisions. They do not defer any Wave 1 scaffold test or gate defined above.

@@ -13,8 +13,10 @@ The project has not published a version or release. Entries under **Unreleased**
 - Contribution, conduct, vulnerability disclosure, licensing, and pull request governance.
 - Documented ownership boundaries for the future desktop app, browser extension, and cross-workspace tests.
 - Wave 1 buildable repository infrastructure: exact Cargo/pnpm membership, pinned tools and stable locks, ten API-free Rust libraries, static desktop shell, inert extension manifest, least-privilege policy tests, and locally passing command gates.
-- Local Windows 11 scaffold evidence recorded for the 2026-11-10 working tree; both ADRs remain Proposed pending review and merge.
+- Local Windows 11 scaffold evidence recorded for local commit `4b2aca0`; ADRs 0001 and 0002 remain Proposed because hosted review and default-branch merge are not evidenced.
+- Roadmap Phase 0 governance and continuous-validation definitions: Proposed ADR 0003, explicit ownership roles, CODEOWNERS, pinned Windows CI, secret/dependency/license/source policy, and reviewed dependency-update configuration.
+- Hosted `main` and upstream tracking restored from scaffold commit `4b2aca0`; private vulnerability reporting enabled. Independent review, Phase 0 merge, protected-check enforcement, and hosted workflow results remain pending.
 
 ### Product functionality
 
-- None. Downloads, networking, persistence, scheduling, filesystem product I/O, browser integration, native messaging, local IPC, media handling, AI, telemetry, updater/tray behavior, installers, CI, publishing, and release artifacts are not implemented.
+- None. Downloads, networking, persistence, scheduling, filesystem product I/O, browser integration, native messaging, local IPC, media handling, AI, telemetry, updater/tray behavior, installers, publishing, and release artifacts are not implemented. Workflow definitions are repository infrastructure, not product functionality, and hosted execution is not yet evidenced.

@@ -1,6 +1,6 @@
 # Architecture
 
-**Status:** Buildable repository scaffold / pre-alpha. Wave 1's exact workspace, zero-feature applications, API-free crates, scaffold tests, and local gates are implemented and locally verified in this working tree. No product protocol or download-manager behavior exists. Proposed ADR 0002 remains unaccepted while the change is unreviewed and unmerged.
+**Status:** Buildable repository scaffold / pre-alpha. Wave 1's exact workspace, zero-feature applications, API-free crates, scaffold tests, and local gates are committed at `4b2aca0`, published as hosted `main`, and locally verified. Roadmap Phase 0 governance and continuous-validation definitions exist on a review branch; private vulnerability reporting is enabled, but independent review, merge, branch enforcement, and hosted workflow results are not yet evidenced. No product protocol or download-manager behavior exists. ADRs 0001, 0002, and 0003 remain Proposed.
 
 ## Architectural goals
 
@@ -13,11 +13,14 @@
 
 ## Current and planned monorepo tree
 
-`(current Wave 1)` marks implemented repository infrastructure in this working tree. `(current)` marks maintained governance or documentation. `(future)` is outside Wave 1 and means neither the artifact nor its behavior necessarily exists.
+`(current Wave 1)` marks committed and locally verified repository infrastructure. `(current Phase 0)` marks the authorized governance/automation follow-on in the current change. `(current)` marks maintained governance or documentation. `(future)` means neither the artifact nor its behavior necessarily exists.
 
 ```text
 open-download-manager/
 |-- .github/
+|   |-- workflows/                     (current Phase 0 continuous-validation definitions)
+|   |-- CODEOWNERS                     (current Phase 0 review ownership)
+|   |-- dependabot.yml                 (current Phase 0 update proposals)
 |   `-- pull_request_template.md       (current)
 |-- apps/
 |   |-- desktop/
@@ -53,11 +56,12 @@ open-download-manager/
 |   |-- integration/                   (future)
 |   |-- scaffold/                      (current Wave 1 scaffold tests/helpers)
 |   `-- benchmarks/                    (future)
-|-- scripts/                           (future, only when justified)
+|-- scripts/                           (current Phase 0 JavaScript license policy)
 |-- AGENTS.md                          (current)
 |-- CHANGELOG.md                       (current)
 |-- CODE_OF_CONDUCT.md                 (current)
 |-- CONTRIBUTING.md                    (current)
+|-- GOVERNANCE.md                      (current Phase 0 ownership and approval policy)
 |-- LICENSE                            (current)
 |-- README.md                          (current)
 |-- SECURITY.md                        (current)
@@ -73,6 +77,7 @@ open-download-manager/
 |-- .prettierrc.json                   (current Wave 1 format policy)
 |-- Cargo.toml                         (current Wave 1 workspace manifest)
 |-- Cargo.lock                         (current Wave 1 committed Cargo lockfile)
+|-- deny.toml                          (current Phase 0 Rust dependency policy)
 |-- eslint.config.mjs                  (current Wave 1 lint policy)
 |-- package.json                       (current Wave 1 private root manifest)
 |-- pnpm-workspace.yaml                (current Wave 1 workspace manifest)
@@ -82,7 +87,15 @@ open-download-manager/
 `-- vitest.config.ts                   (current Wave 1 scaffold-test config)
 ```
 
-CI workflows and release automation are future reviewed artifacts, not part of Wave 1. The local commands are implemented and verified; a later reviewed change may automate them without converting scaffold evidence into product evidence. A later tree change must update this document and, if it changes a durable boundary, add or supersede an ADR.
+CI was not part of Wave 1. The separately authorized Roadmap Phase 0 change now defines Windows continuous validation and supply-chain checks under [Proposed ADR 0003](decisions/0003-continuous-validation-and-governance.md). Those definitions automate scaffold evidence only and do not create product or release evidence. Hosted execution remains unverified until a default branch and reviewed workflow run exist. Release automation remains future scope.
+
+## Repository automation boundary
+
+The primary workflow provisions the exact repository toolchains on `windows-2025` and invokes the existing `corepack pnpm check` composition rather than duplicating its internal commands. Separate unprivileged jobs scan Git history for secrets and validate Rust/JavaScript dependency advisories, licenses, and sources.
+
+Automation may read repository contents and public dependency/advisory services. It may not mutate the repository, publish artifacts, access release environments, receive signing/store/provider credentials, or execute proposed code through a privileged event. Full action SHAs, downloaded-tool digests, frozen/locked dependency resolution, finite timeouts, and cleanup policy are architecture inputs covered by scaffold policy tests.
+
+CODEOWNERS identifies reviewers but is not an authorization or enforcement mechanism by itself. Hosted branch rules and independent review remain required external controls under [`../GOVERNANCE.md`](../GOVERNANCE.md).
 
 ## Ownership boundaries
 

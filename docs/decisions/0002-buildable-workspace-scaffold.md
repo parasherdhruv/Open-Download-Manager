@@ -9,7 +9,7 @@
 
 Wave 0 defined repository ownership and long-range product requirements but did not provide manifests, lockfiles, source, automated tests, or an executable command contract. The user explicitly authorized the next scope as **Repository scaffold**, meaning creation of the documented monorepo and baseline build configuration. That authorization permits this ADR and its implementation to be drafted in the same change; it does not approve this ADR, prove a merge, authorize product behavior, or authorize publishing.
 
-The authorized Wave 1 infrastructure is now implemented and locally verified in this working tree. No automated product test or product behavior exists. Both this ADR and [ADR 0001](0001-repository-scaffold.md) remain Proposed because no reviewed and merged repository revision is evidenced.
+The authorized Wave 1 infrastructure is implemented, locally verified, and committed locally at `4b2aca0`. No automated product test or product behavior exists. Both this ADR and [ADR 0001](0001-repository-scaffold.md) remain Proposed because no hosted review or default-branch merge is evidenced. [Proposed ADR 0003](0003-continuous-validation-and-governance.md) governs the separately authorized follow-on automation and governance slice.
 
 The supplied [`blueprint.md`](../../blueprint.md) was read before Wave 0 authoring. The Wave 0 author reported SHA-256 `57C6C640AFAFE7E55C74A51E1008B4338B1FC3B78CF8DE0642AF8ABA9C3B488D` after writing the documentation. This is task provenance and an integrity expectation, not a claim about Git history.
 

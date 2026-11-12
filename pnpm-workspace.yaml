@@ -3,7 +3,44 @@ packages:
   - apps/browser-extension
 engineStrict: true
 failIfNoMatch: true
+minimumReleaseAge: 10080
+minimumReleaseAgeExcludePrune: true
+minimumReleaseAgeIgnoreMissingTime: false
+minimumReleaseAgeStrict: true
 minimumReleaseAgeExclude:
+  - '@eslint-community/regexpp@4.12.3'
+  - '@playwright/test@1.65.0'
+  - '@rolldown/binding-android-arm-eabi@1.2.18'
+  - '@rolldown/binding-android-arm64@1.2.18'
+  - '@rolldown/binding-darwin-arm64@1.2.18'
+  - '@rolldown/binding-darwin-x64@1.2.18'
+  - '@rolldown/binding-freebsd-x64@1.2.18'
+  - '@rolldown/binding-linux-arm-gnueabihf@1.2.18'
+  - '@rolldown/binding-linux-arm64-gnu@1.2.18'
+  - '@rolldown/binding-linux-arm64-musl@1.2.18'
+  - '@rolldown/binding-linux-ppc64-gnu@1.2.18'
+  - '@rolldown/binding-linux-s390x-gnu@1.2.18'
+  - '@rolldown/binding-linux-x64-gnu@1.2.18'
+  - '@rolldown/binding-linux-x64-musl@1.2.18'
+  - '@rolldown/binding-openharmony-arm64@1.2.18'
+  - '@rolldown/binding-win32-arm64-msvc@1.2.18'
+  - '@rolldown/binding-win32-x64-msvc@1.2.18'
+  - '@rolldown/pluginutils@1.1.0'
+  - '@tailwindcss/node@4.3.5'
+  - '@tailwindcss/oxide-android-arm64@4.3.5'
+  - '@tailwindcss/oxide-darwin-arm64@4.3.5'
+  - '@tailwindcss/oxide-darwin-x64@4.3.5'
+  - '@tailwindcss/oxide-freebsd-x64@4.3.5'
+  - '@tailwindcss/oxide-linux-arm-gnueabihf@4.3.5'
+  - '@tailwindcss/oxide-linux-arm64-gnu@4.3.5'
+  - '@tailwindcss/oxide-linux-arm64-musl@4.3.5'
+  - '@tailwindcss/oxide-linux-x64-gnu@4.3.5'
+  - '@tailwindcss/oxide-linux-x64-musl@4.3.5'
+  - '@tailwindcss/oxide-wasm32-wasi@4.3.5'
+  - '@tailwindcss/oxide-win32-arm64-msvc@4.3.5'
+  - '@tailwindcss/oxide-win32-x64-msvc@4.3.5'
+  - '@tailwindcss/oxide@4.3.5'
+  - '@tailwindcss/vite@4.3.5'
   - '@typescript-eslint/eslint-plugin@8.72.2'
   - '@typescript-eslint/parser@8.72.2'
   - '@typescript-eslint/project-service@8.72.2'
@@ -14,6 +51,22 @@ minimumReleaseAgeExclude:
   - '@typescript-eslint/typescript-estree@8.72.2'
   - '@typescript-eslint/utils@8.72.2'
   - '@typescript-eslint/visitor-keys@8.72.2'
+  - '@vitejs/plugin-react@6.3.0'
+  - ansi-regex@6.6.0
+  - caniuse-lite@1.0.30001823
+  - electron-to-chromium@1.5.478
+  - jsdom@31.0.0
+  - parse5-parser-stream@8.1.1
+  - parse5@8.1.1
+  - playwright-core@1.65.0
+  - playwright@1.65.0
+  - rolldown@1.2.18
+  - tailwindcss@4.3.5
+  - tough-cookie@6.1.0
   - typescript-eslint@8.72.2
+  - undici@8.12.4
+  - vite@8.3.7
+overrides:
+  re2js: 2.8.7
 saveExact: true
 strictPeerDependencies: true

@@ -1,0 +1,38 @@
+[graph]
+targets = ['x86_64-pc-windows-msvc']
+all-features = true
+
+[advisories]
+db-urls = ['https://github.com/RustSec/advisory-db']
+yanked = 'deny'
+unmaintained = 'workspace'
+unsound = 'all'
+ignore = []
+maximum-db-staleness = 'P7D'
+unused-ignored-advisory = 'deny'
+
+[bans]
+multiple-versions = 'warn'
+wildcards = 'deny'
+allow-wildcard-paths = true
+highlight = 'all'
+
+[licenses]
+confidence-threshold = 0.93
+unused-allowed-license = 'warn'
+allow = [
+  'Apache-2.0',
+  'BSD-3-Clause',
+  'MIT',
+  'MPL-2.0',
+  'Unicode-3.0',
+  'Zlib',
+]
+exceptions = []
+
+[sources]
+unknown-registry = 'deny'
+unknown-git = 'deny'
+required-git-spec = 'rev'
+allow-registry = ['https://github.com/rust-lang/crates.io-index']
+unused-allowed-source = 'deny'
