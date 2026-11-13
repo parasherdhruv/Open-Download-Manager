@@ -1,6 +1,6 @@
 # Cross-Workspace Test Boundary
 
-**Status:** Wave 1 repository-scaffold tests are implemented and locally verified. This directory contains topology/configuration, API-free crate, regression, resilience, Tauri policy, and extension-build determinism tests plus support helpers. It contains no download fixture server, product integration suite, product resilience suite, benchmark, or generated test output.
+**Status:** Wave 1 repository-scaffold tests are implemented and locally verified. Roadmap Phase 0 extends the scaffold policy layer with repository-automation, ownership, dependency-update, and JavaScript license-policy regressions. This directory contains no download fixture server, product integration suite, product resilience suite, benchmark, or generated test output.
 
 ## Ownership
 
@@ -30,8 +30,9 @@ Proposed ADR 0002 authorizes only repository-infrastructure coverage before prod
 - Offline frozen pnpm importer/lock consistency with before/after hash and synthetic drift rejection.
 - Create-only explicit extension output, isolated verified default replacement, external sentinel preservation, and two clean builds with identical one-file inventories and bytes.
 - A local static Playwright web-shell smoke with service workers blocked and context-wide HTTP/WebSocket guards; no Tauri/WebView runtime, network fixture server, or product journey.
+- Repository automation policy: immutable action/tool pins, unprivileged triggers, read-only permissions, explicit runners/timeouts, CODEOWNERS coverage, exact Dependabot ecosystems, release-age policy, and default-deny JavaScript licenses.
 
-These tests are meaningful because they fail concrete topology, permission, configuration, filesystem-safety, lock-consistency, and reproducibility regressions. Across the two app-local scaffold files and eight root scaffold files, Vitest passed 102 tests in 10 files with no skips; Playwright separately passed one loopback-only static-shell smoke. Cargo exercised 11 test harnesses with zero test cases by intentional API-free design, not as unit coverage. Detailed cases, commands, and the bounded Windows descendant-timeout harness risk are in [`../docs/TEST_PLAN.md`](../docs/TEST_PLAN.md).
+These tests are meaningful because they fail concrete topology, permission, configuration, filesystem-safety, lock-consistency, reproducibility, and repository-automation regressions. The 2026-11-10 Wave 1 baseline passed 102 Vitest tests in 10 files; the locally verified Phase 0 tree passes 124 Vitest tests in 11 files. Playwright separately passes one loopback-only static-shell smoke, and Cargo exercises 11 test harnesses with zero test cases by intentional API-free design, not as unit coverage. Detailed cases, commands, current counts, and the bounded Windows descendant-timeout harness risk are in [`../docs/TEST_PLAN.md`](../docs/TEST_PLAN.md).
 
 ## Fixture rules
 

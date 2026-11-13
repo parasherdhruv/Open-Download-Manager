@@ -1,6 +1,6 @@
 # Roadmap
 
-**Current status:** Buildable repository scaffold / pre-alpha. Wave 1 repository infrastructure is implemented and locally verified in this unmerged working tree; product functionality is not implemented. This roadmap orders outcomes and gates; it is not a delivery schedule or a release claim.
+**Current status:** Buildable repository scaffold / pre-alpha. Wave 1 repository infrastructure is committed at `4b2aca0`, published as hosted `main`, and locally verified. Roadmap Phase 0 governance and continuous-validation definitions are present on a review branch; private vulnerability reporting, exact branch protection, and the initial four hosted checks are verified. Independent review and merge remain pending. Product functionality is not implemented. This roadmap orders outcomes and gates; it is not a delivery schedule or a release claim.
 
 ## Status vocabulary
 
@@ -9,7 +9,7 @@
 - **Implemented:** Source exists, failure and security paths are handled, relevant automated tests pass, and documentation matches verified behavior.
 - **Released:** Implemented behavior is included in a published, verified artifact under the release policy.
 
-Wave 0 documentation and Wave 1 build infrastructure exist in the working tree. Both ADRs remain Proposed until review and merge. No product capability, CI, distributable artifact, or release is implemented.
+Wave 0 documentation and Wave 1 build infrastructure exist in local history. The current Roadmap Phase 0 change defines CI and governance policy without proving hosted execution. ADRs 0001, 0002, and 0003 remain Proposed until independent review and default-branch merge. No product capability, distributable artifact, or release is implemented.
 
 ## Sequencing principles
 
@@ -25,7 +25,7 @@ Each wave is separately reviewed. Later-wave documentation does not authorize pu
 
 ## Wave 0: repository documentation and governance
 
-**State:** Authored documentation milestone; scaffolded only and unmerged.
+**State:** Authored documentation milestone committed locally at `4b2aca0`; scaffolded only, with no hosted review/default-branch merge evidence.
 
 Outcomes:
 
@@ -40,7 +40,7 @@ Exit evidence is limited to file-scope, link, required-language, text-hygiene, l
 
 ## Wave 1: buildable repository scaffold
 
-**State:** Explicitly user-authorized and implemented in the working tree under [Proposed ADR 0002](decisions/0002-buildable-workspace-scaffold.md); locally verified but not reviewed, approved, accepted, or merged.
+**State:** Explicitly user-authorized, implemented, locally verified, and committed locally at `4b2aca0` under [Proposed ADR 0002](decisions/0002-buildable-workspace-scaffold.md); hosted review, approval, acceptance, and default-branch merge are not evidenced.
 
 Implemented infrastructure outcomes:
 
@@ -53,9 +53,24 @@ Implemented infrastructure outcomes:
 - Meaningful scaffold evidence: React render, manifest policy, Tauri policy, topology/configuration regression, repeated extension-build determinism, Playwright local smoke, and Cargo format/clippy/test/build/no-bundle gates.
 - No download, persistence, scheduling, browser integration, media, installer, release, publishing, or product API behavior.
 
-CI is not part of Wave 1. A later reviewed change may automate the now-verified local commands. Release packaging and publication remain excluded.
+CI is not part of Wave 1. The separately authorized Roadmap Phase 0 change below automates the now-verified local commands. Release packaging and publication remain excluded.
 
 Local exit evidence: every binary criterion in [`PRD.md`](PRD.md) and every required command in [`TEST_PLAN.md`](TEST_PLAN.md) was observed passing on a supported Windows environment, with stable locks, current documentation, and unchanged blueprint evidence. This implements repository infrastructure only; downloads remain unavailable. Milestone and ADR acceptance still require review and merge.
+
+## Roadmap Phase 0: governance and continuous validation
+
+**State:** Authorized current review branch under [Proposed ADR 0003](decisions/0003-continuous-validation-and-governance.md). Definitions and policy gates are locally verified; hosted `main`/upstream tracking, private vulnerability reporting, exact branch protection, and the initial four hosted checks are verified. Independent review and merge remain pending.
+
+Implemented local-definition outcomes:
+
+- Read-only Windows workflow that provisions exact tools and runs the complete frozen/locked scaffold gate without producing a bundle.
+- Separate secret, Rust dependency, JavaScript advisory, and default-deny JavaScript license jobs with pinned tool identities.
+- Weekly Dependabot proposals for pnpm, Cargo, and GitHub Actions, with no auto-merge.
+- Seven-day pnpm release-age policy, exact reviewed exceptions, and a targeted patched resolution for the observed high-severity transitive advisory.
+- CODEOWNERS plus documented maintainer, independent ADR approval, release-approval, security-response, and required-check policy.
+- Scaffold regressions for action pins, workflow permissions/triggers/timeouts, dependency automation, ownership, and license policy.
+
+Hosted `main`/upstream tracking, private vulnerability reporting, the exact required checks/code-owner rule, and an initial passing hosted run satisfy the enforceable repository prerequisites. Phase 0 completes only after the scaffold and Phase 0 change receive independent review and the protected change is merged. Until then, ADR acceptance is not claimed.
 
 ## Wave 2: safe single-stream foundation
 

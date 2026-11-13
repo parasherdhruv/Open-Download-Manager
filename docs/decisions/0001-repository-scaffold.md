@@ -7,7 +7,7 @@
 
 ## Context
 
-Wave 0 authoring used [`blueprint.md`](../../blueprint.md), a supplied source vision covering a Windows-first Rust/Tauri/React download manager. The blueprint is aspirational: it describes long-range product behavior, but no source, workspace, build, test, security control, installer, or release existed at that stage. This unmerged record does not claim repository-history provenance or prior acceptance.
+Wave 0 authoring used [`blueprint.md`](../../blueprint.md), a supplied source vision covering a Windows-first Rust/Tauri/React download manager. The blueprint is aspirational: it describes long-range product behavior, but no source, workspace, build, test, security control, installer, or release existed at that stage. This record is committed locally at `4b2aca0`, but no hosted review or default-branch merge is evidenced, so it does not claim prior acceptance.
 
 Moving directly from that vision to product code would leave current scope, dependency direction, trust boundaries, completion language, toolchain policy, and release gates ambiguous. It would also make it easy to present planned capability as implemented or to create incompatible crate interfaces before a concrete caller exists.
 
@@ -57,7 +57,7 @@ Wave 0 selected this baseline for the later workspace bootstrap:
 - Rust edition 2024 and Cargo resolver 3.
 - Tauri 2, React 19, and strict TypeScript, with exact dependency releases selected through review.
 
-The explicitly authorized follow-on, [Proposed ADR 0002](0002-buildable-workspace-scaffold.md), fixes the exact Wave 1 patch versions and command gates. Its infrastructure is now implemented and locally verified in this working tree. It refines this broad baseline without changing Wave 0's historical documentation-only boundary, remains Proposed while unmerged, and becomes Accepted only with review and merge.
+The explicitly authorized follow-on, [Proposed ADR 0002](0002-buildable-workspace-scaffold.md), fixes the exact Wave 1 patch versions and command gates. Its infrastructure is implemented, locally verified, and committed locally at `4b2aca0`. It refines this broad baseline without changing Wave 0's historical documentation-only boundary, remains Proposed without hosted review/default-branch merge evidence, and becomes Accepted only with review and merge. [Proposed ADR 0003](0003-continuous-validation-and-governance.md) separately governs the later continuous-validation and governance slice.
 
 [`../DEVELOPMENT.md`](../DEVELOPMENT.md) defines the exact Wave 1 root command contract. The manifests, source, configuration, and tests now implement that contract, and the commands were locally verified on the documented Windows baseline.
 

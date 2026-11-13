@@ -177,6 +177,13 @@ function parseValue(value: string): SimpleTomlValue {
   if (/^-?\d+$/.test(trimmed)) {
     return Number(trimmed);
   }
+  if (/^-?\d+\.\d+$/.test(trimmed)) {
+    const parsed = Number(trimmed);
+    if (!Number.isFinite(parsed)) {
+      throw new Error('TOML contains a non-finite decimal value.');
+    }
+    return parsed;
+  }
   if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
     const inner = trimmed.slice(1, -1).trim();
     return inner ? splitCollectionEntries(inner).map((entry) => parseValue(entry)) : [];

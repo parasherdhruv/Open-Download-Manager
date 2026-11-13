@@ -209,14 +209,14 @@ Limits must fail explicitly, be cancellable, and avoid integer overflow. User co
 
 - Review necessity, license, provenance, maintenance, transitive impact, build scripts, and advisories before adopting dependencies.
 - Lock dependency resolution and review every manifest or lockfile change.
-- Run vulnerability and license checks with documented tools and triage policy.
+- Run the pinned Rust and JavaScript vulnerability, license, source, and secret checks defined by [Proposed ADR 0003](decisions/0003-continuous-validation-and-governance.md). Unknown licenses and Rust sources fail closed; no advisory is silently ignored.
 - Pin and protect release environments; minimize credentials and separate untrusted pull-request execution from signing.
 - Generate provenance, checksums, and release notes from the reviewed commit.
 - Sign public Windows artifacts only through a documented key-custody process.
 - Verify packaged contents, native-host registration, permissions, updates, uninstall, and clean-machine installation.
 - Never expose signing, store, or provider credentials to untrusted builds or logs.
 
-No CI, signing, publishing, installer, update, or release mechanism exists. Wave 1 adds none; its local gates are verified, and later CI still requires separate review. Future release gates are in [`RELEASE_PLAN.md`](RELEASE_PLAN.md).
+Wave 1 added no CI. Roadmap Phase 0 now defines read-only continuous-validation and supply-chain workflows with immutable action/tool pins, bounded jobs, no privileged untrusted-code trigger, and no release credentials. Hosted `main`, private vulnerability reporting, exact branch protection, and the initial four hosted checks are verified; independent review and Phase 0 merge remain pending. No signing, publishing, installer, update, or release mechanism exists. Future release gates are in [`RELEASE_PLAN.md`](RELEASE_PLAN.md).
 
 ## Security verification matrix
 
@@ -245,6 +245,6 @@ Suspected vulnerabilities follow the private route in [`../SECURITY.md`](../SECU
 - Native-pipe peer authentication and protocol security properties.
 - Numeric resource limits and diagnostic retention/export defaults.
 - Tauri capability, command, and CSP expansion for the first product UI slice beyond Wave 1's empty baseline.
-- Dependency audit, license policy tooling, provenance format, update mechanism, and signing-key custody.
+- Provenance format, update mechanism, and signing-key custody beyond the Phase 0 repository-only dependency policy.
 
 The related feature cannot be released until its open security decisions are resolved and verified.

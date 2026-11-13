@@ -49,6 +49,9 @@ const ROOT_PACKAGE = {
     'rust:test': 'cargo test --locked --workspace --all-targets --all-features',
     'rust:build': 'cargo build --locked --workspace --all-targets --all-features',
     'tauri:build': 'corepack pnpm --filter @odm/desktop exec tauri build --no-bundle -- --locked',
+    'audit:js': 'corepack pnpm audit --audit-level high',
+    'licenses:js': 'node scripts/check-js-licenses.mjs --pnpm',
+    'audit:rust': 'cargo deny --locked check advisories bans licenses sources',
     check:
       'corepack pnpm format:check && corepack pnpm lint && corepack pnpm typecheck && corepack pnpm test && corepack pnpm test:e2e && corepack pnpm build && corepack pnpm rust:fmt && corepack pnpm rust:clippy && corepack pnpm rust:test && corepack pnpm rust:build && corepack pnpm tauri:build',
   },
@@ -230,9 +233,79 @@ describe('Wave 1 workspace configuration', () => {
       repositoryPath('pnpm-workspace.yaml'),
       'pnpm workspace file',
     );
-    expect(workspaceText.replaceAll('\r\n', '\n')).toBe(
-      "packages:\n  - apps/desktop\n  - apps/browser-extension\nengineStrict: true\nfailIfNoMatch: true\nminimumReleaseAgeExclude:\n  - '@typescript-eslint/eslint-plugin@8.72.2'\n  - '@typescript-eslint/parser@8.72.2'\n  - '@typescript-eslint/project-service@8.72.2'\n  - '@typescript-eslint/scope-manager@8.72.2'\n  - '@typescript-eslint/tsconfig-utils@8.72.2'\n  - '@typescript-eslint/type-utils@8.72.2'\n  - '@typescript-eslint/types@8.72.2'\n  - '@typescript-eslint/typescript-estree@8.72.2'\n  - '@typescript-eslint/utils@8.72.2'\n  - '@typescript-eslint/visitor-keys@8.72.2'\n  - typescript-eslint@8.72.2\nsaveExact: true\nstrictPeerDependencies: true\n",
-    );
+    expect(workspaceText.replaceAll('\r\n', '\n')).toBe(`packages:
+  - apps/desktop
+  - apps/browser-extension
+engineStrict: true
+failIfNoMatch: true
+minimumReleaseAge: 10080
+minimumReleaseAgeExcludePrune: true
+minimumReleaseAgeIgnoreMissingTime: false
+minimumReleaseAgeStrict: true
+minimumReleaseAgeExclude:
+  - '@eslint-community/regexpp@4.12.3'
+  - '@playwright/test@1.65.0'
+  - '@rolldown/binding-android-arm-eabi@1.2.18'
+  - '@rolldown/binding-android-arm64@1.2.18'
+  - '@rolldown/binding-darwin-arm64@1.2.18'
+  - '@rolldown/binding-darwin-x64@1.2.18'
+  - '@rolldown/binding-freebsd-x64@1.2.18'
+  - '@rolldown/binding-linux-arm-gnueabihf@1.2.18'
+  - '@rolldown/binding-linux-arm64-gnu@1.2.18'
+  - '@rolldown/binding-linux-arm64-musl@1.2.18'
+  - '@rolldown/binding-linux-ppc64-gnu@1.2.18'
+  - '@rolldown/binding-linux-s390x-gnu@1.2.18'
+  - '@rolldown/binding-linux-x64-gnu@1.2.18'
+  - '@rolldown/binding-linux-x64-musl@1.2.18'
+  - '@rolldown/binding-openharmony-arm64@1.2.18'
+  - '@rolldown/binding-win32-arm64-msvc@1.2.18'
+  - '@rolldown/binding-win32-x64-msvc@1.2.18'
+  - '@rolldown/pluginutils@1.1.0'
+  - '@tailwindcss/node@4.3.5'
+  - '@tailwindcss/oxide-android-arm64@4.3.5'
+  - '@tailwindcss/oxide-darwin-arm64@4.3.5'
+  - '@tailwindcss/oxide-darwin-x64@4.3.5'
+  - '@tailwindcss/oxide-freebsd-x64@4.3.5'
+  - '@tailwindcss/oxide-linux-arm-gnueabihf@4.3.5'
+  - '@tailwindcss/oxide-linux-arm64-gnu@4.3.5'
+  - '@tailwindcss/oxide-linux-arm64-musl@4.3.5'
+  - '@tailwindcss/oxide-linux-x64-gnu@4.3.5'
+  - '@tailwindcss/oxide-linux-x64-musl@4.3.5'
+  - '@tailwindcss/oxide-wasm32-wasi@4.3.5'
+  - '@tailwindcss/oxide-win32-arm64-msvc@4.3.5'
+  - '@tailwindcss/oxide-win32-x64-msvc@4.3.5'
+  - '@tailwindcss/oxide@4.3.5'
+  - '@tailwindcss/vite@4.3.5'
+  - '@typescript-eslint/eslint-plugin@8.72.2'
+  - '@typescript-eslint/parser@8.72.2'
+  - '@typescript-eslint/project-service@8.72.2'
+  - '@typescript-eslint/scope-manager@8.72.2'
+  - '@typescript-eslint/tsconfig-utils@8.72.2'
+  - '@typescript-eslint/type-utils@8.72.2'
+  - '@typescript-eslint/types@8.72.2'
+  - '@typescript-eslint/typescript-estree@8.72.2'
+  - '@typescript-eslint/utils@8.72.2'
+  - '@typescript-eslint/visitor-keys@8.72.2'
+  - '@vitejs/plugin-react@6.3.0'
+  - ansi-regex@6.6.0
+  - caniuse-lite@1.0.30001823
+  - electron-to-chromium@1.5.478
+  - jsdom@31.0.0
+  - parse5-parser-stream@8.1.1
+  - parse5@8.1.1
+  - playwright-core@1.65.0
+  - playwright@1.65.0
+  - rolldown@1.2.18
+  - tailwindcss@4.3.5
+  - tough-cookie@6.1.0
+  - typescript-eslint@8.72.2
+  - undici@8.12.4
+  - vite@8.3.7
+overrides:
+  re2js: 2.8.7
+saveExact: true
+strictPeerDependencies: true
+`);
   });
 
   it('keeps the root private and pins every root dependency exactly', async () => {

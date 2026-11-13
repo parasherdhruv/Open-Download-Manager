@@ -1,0 +1,16 @@
+* @parasherdhruv
+
+/.github/CODEOWNERS @parasherdhruv
+/.github/dependabot.yml @parasherdhruv
+/.github/workflows/ @parasherdhruv
+/GOVERNANCE.md @parasherdhruv
+/SECURITY.md @parasherdhruv
+/docs/SECURITY.md @parasherdhruv
+/docs/decisions/ @parasherdhruv
+/Cargo.toml @parasherdhruv
+/Cargo.lock @parasherdhruv
+/package.json @parasherdhruv
+/pnpm-workspace.yaml @parasherdhruv
+/pnpm-lock.yaml @parasherdhruv
+/rust-toolchain.toml @parasherdhruv
+/deny.toml @parasherdhruv

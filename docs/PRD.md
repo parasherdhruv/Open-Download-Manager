@@ -1,9 +1,9 @@
 # Product Requirements Document
 
 **Product:** Open Download Manager (ODM)
-**Current repository state:** Buildable repository scaffold / pre-alpha
-**Authorized implementation scope:** Wave 1 buildable repository scaffold under Proposed ADR 0002
-**Implementation status:** Wave 1 repository infrastructure is implemented and locally verified in this unmerged working tree; all product functionality remains unimplemented
+**Current repository state:** Buildable repository scaffold / pre-alpha with local Phase 0 governance and continuous-validation definitions
+**Authorized implementation scope:** Roadmap Phase 0 governance and continuous validation under Proposed ADR 0003
+**Implementation status:** Wave 1 repository infrastructure is committed locally at `4b2aca0` and locally verified; Phase 0 repository controls are defined locally, hosted execution is not evidenced, and all product functionality remains unimplemented
 
 ## Purpose
 
@@ -156,7 +156,7 @@ Establish a substantive documentation and governance baseline for a future monor
 
 ## Wave 1: buildable repository scaffold
 
-**Status:** Explicitly user-authorized and implemented in this working tree under [Proposed ADR 0002](decisions/0002-buildable-workspace-scaffold.md). Local implementation evidence is complete; review, merge, ADR acceptance, and milestone acceptance have not occurred.
+**Status:** Explicitly user-authorized, implemented, locally verified, and committed locally at `4b2aca0` under [Proposed ADR 0002](decisions/0002-buildable-workspace-scaffold.md). Hosted review, default-branch merge, ADR acceptance, and milestone acceptance are not evidenced.
 
 ### Objective
 
@@ -224,13 +224,13 @@ Wave 1 passes only when all of the following are true:
 13. The Playwright smoke test loads the locally built or previewed desktop web shell from the exact loopback origin, blocks service workers, observes its pre-alpha/unavailable text, and uses browser-context HTTP and WebSocket guards to reject non-loopback traffic. It is not a runtime Tauri/WebView test.
 14. `corepack pnpm check` and every constituent command listed in [`DEVELOPMENT.md`](DEVELOPMENT.md) exit successfully without a required skip. Cargo format, clippy, test, and build evidence uses the documented forms.
 15. On Windows with the documented MSVC, SDK, and WebView2 prerequisites, the locked Tauri `build --no-bundle` command exits successfully and creates no committed bundle or release artifact.
-16. Current-status documentation still says product functionality is unavailable, both ADRs remain Proposed until review/merge, all relative links and text-hygiene checks pass, and [`../blueprint.md`](../blueprint.md) retains SHA-256 `57C6C640AFAFE7E55C74A51E1008B4338B1FC3B78CF8DE0642AF8ABA9C3B488D`.
+16. Current-status documentation still says product functionality is unavailable, ADRs 0001 and 0002 remain Proposed until review/merge, all relative links and text-hygiene checks pass, and [`../blueprint.md`](../blueprint.md) retains SHA-256 `57C6C640AFAFE7E55C74A51E1008B4338B1FC3B78CF8DE0642AF8ABA9C3B488D`.
 
 Passing these criteria implements the Wave 1 repository infrastructure only. It does not implement or test a product download capability.
 
 ### Observed implementation evidence
 
-On a supported Windows 11 environment on 2026-11-10, the working tree satisfied the Wave 1 binary criteria:
+On a supported Windows 11 environment on 2026-11-10, the content later committed locally at `4b2aca0` satisfied the Wave 1 binary criteria:
 
 - Locked metadata reported exactly eleven Cargo members and two pnpm applications. All ten libraries were API-free and dependency-free, and the live internal workspace graph had zero edges.
 - Frozen pnpm installation passed without lock drift. `Cargo.lock` SHA-256 was `BB7B4118A417CEAEB2581B76BAA1B2AA3402B85C0CFBE251104037B01B90E9B2`; `pnpm-lock.yaml` SHA-256 was `D3153A36A4D3A80E576364B32AB08F17DD16E1D78E1933D5D8400762D649930A`.
@@ -238,7 +238,43 @@ On a supported Windows 11 environment on 2026-11-10, the working tree satisfied 
 - Cargo format, clippy, test, and build passed. Both web applications built, the locked Tauri no-bundle build passed, and the Tauri/extension least-privilege policies passed.
 - Generated build/test outputs were cleaned, no distributable or release artifact remained, and the blueprint SHA-256 remained `57C6C640AFAFE7E55C74A51E1008B4338B1FC3B78CF8DE0642AF8ABA9C3B488D`.
 
-This is local implementation evidence for an unmerged change, not approval, acceptance, release, or evidence for any P0, P1, or P2 capability.
+This is local implementation evidence without hosted review/default-branch merge evidence, not approval, acceptance, release, or evidence for any P0, P1, or P2 capability.
+
+## Roadmap Phase 0: governance and continuous validation
+
+**Status:** Explicitly user-authorized in the current review branch under [Proposed ADR 0003](decisions/0003-continuous-validation-and-governance.md). Hosted `main`/upstream tracking, private vulnerability reporting, exact branch protection, and the initial four hosted checks are verified. Independent review and merge remain pending.
+
+This Phase 0 is the post-Wave 1 phase in the implementation-ready roadmap, not the earlier Wave 0 documentation milestone.
+
+### Objective
+
+Make the committed scaffold reviewable and continuously reproducible without adding product behavior or release automation.
+
+### Authorized artifacts
+
+- GitHub Actions definitions for the complete Windows scaffold gate and separate secret/dependency policy.
+- CODEOWNERS, repository governance, pull-request policy, and weekly Dependabot proposals for pnpm, Cargo, and GitHub Actions.
+- `deny.toml`, a repository-owned JavaScript license policy script, a seven-day pnpm release-age policy, and a targeted reviewed dependency resolution override.
+- Scaffold policy tests that reject floating actions, privileged untrusted triggers, write permissions, missing timeouts, unpinned tools, incomplete ownership, and malformed update policy.
+- Documentation and a Proposed same-change ADR required to keep ownership, commands, current status, and hosted limitations accurate.
+
+### Explicit exclusions
+
+- Product networking, filesystem product I/O, persistence, scheduler behavior, browser integration, media, AI, telemetry, updater, tray, installer, bundle, signing, publishing, or release automation.
+- Signing/store/provider credentials, write-capable workflow tokens, privileged execution of untrusted changes, automatic dependency merging, or release secrets.
+- Claims that a workflow definition has run, that branch rules exist, or that an ADR was accepted without hosted evidence.
+
+### Acceptance criteria
+
+1. The exact Wave 1 `corepack pnpm check` gate runs on the explicit supported Windows runner label after frozen provisioning.
+2. Every action reference is a full commit SHA; checkout credentials do not persist; jobs have read-only permissions and finite timeouts.
+3. Gitleaks and cargo-deny binaries are version- and SHA-256-pinned; JavaScript advisory and default-deny license checks cover the frozen graph.
+4. Dependabot covers pnpm, Cargo, and GitHub Actions but cannot auto-merge; pnpm enforces a nonzero release-age delay.
+5. CODEOWNERS and repository governance identify maintainers, independent ADR approval, the currently unfilled release-approver role, and security-response ownership.
+6. Local policy tests reject representative workflow, ownership, update-policy, and license-policy regressions.
+7. The remote default branch, independent review, required checks, private vulnerability reporting, and branch rules are separately inspected before Phase 0 is called complete.
+
+Passing local criteria implements repository-control definitions only. Until hosted activation evidence exists, Phase 0 remains incomplete and no continuous-integration pass is claimed.
 
 ## Future product acceptance
 

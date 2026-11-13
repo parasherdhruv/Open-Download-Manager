@@ -96,6 +96,14 @@ describe('synthetic topology regressions', () => {
     });
   });
 
+  it('parses finite decimal values used by repository policy', () => {
+    const document = parseSimpleToml('[policy]\nconfidence = 0.93\n');
+
+    expect(tomlSectionObject(requireTomlSection(document, 'policy', 'Synthetic policy'))).toEqual({
+      confidence: 0.93,
+    });
+  });
+
   it('parses formatter-emitted TOML inline dependency tables', () => {
     const document = parseSimpleToml(
       "[dependencies]\ntauri = { version = '=2.12.5', features = [] }\n",

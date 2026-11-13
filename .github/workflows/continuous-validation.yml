@@ -1,0 +1,89 @@
+name: Continuous validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: continuous-validation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scaffold:
+    name: Windows scaffold gate
+    runs-on: windows-2025
+    timeout-minutes: 45
+    env:
+      CI: true
+    steps:
+      - name: Check out reviewed source
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+
+      - name: Set up pinned Node.js
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+
+      - name: Verify pinned toolchains
+        shell: pwsh
+        run: |
+          corepack enable
+          node --version
+          corepack pnpm --version
+          rustc --version
+          cargo --version
+
+      - name: Install frozen JavaScript dependencies
+        run: corepack pnpm install --frozen-lockfile
+
+      - name: Provision pinned Playwright Chromium
+        run: corepack pnpm exec playwright install chromium
+
+      - name: Run complete scaffold gate
+        run: corepack pnpm check
+
+      - name: Verify protected inputs did not drift
+        shell: pwsh
+        run: |
+          git diff --exit-code -- Cargo.lock pnpm-lock.yaml blueprint.md
+          if ($LASTEXITCODE -ne 0) {
+            throw 'A protected input changed during validation.'
+          }
+
+      - name: Remove generated output and verify cleanliness
+        if: ${{ always() }}
+        shell: pwsh
+        run: |
+          $generatedPaths = @(
+            'node_modules',
+            'apps/desktop/node_modules',
+            'apps/browser-extension/node_modules',
+            'target',
+            'apps/desktop/dist',
+            'apps/browser-extension/dist',
+            'apps/desktop/src-tauri/gen/schemas',
+            'playwright-report',
+            'test-results',
+            'blob-report'
+          )
+          foreach ($path in $generatedPaths) {
+            if (Test-Path -LiteralPath $path) {
+              Remove-Item -LiteralPath $path -Recurse -Force
+            }
+          }
+          $unexpected = @(git status --porcelain --untracked-files=all)
+          if ($LASTEXITCODE -ne 0) {
+            throw 'Git status failed after cleanup.'
+          }
+          if ($unexpected.Count -ne 0) {
+            $unexpected
+            throw 'Validation left repository changes or generated output.'
+          }

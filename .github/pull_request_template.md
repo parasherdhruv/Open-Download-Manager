@@ -16,6 +16,10 @@
 
 <!-- Identify changed trust boundaries, untrusted inputs, permissions, data handling, logging, or release risk. Write "None" with a reason if there is no impact. Do not disclose a vulnerability here. -->
 
+- Workflow permissions/triggers/action pins changed: <!-- Yes/No and review evidence. -->
+- Dependency, lock, license, advisory, or release-age policy changed: <!-- Yes/No and review evidence. -->
+- CODEOWNERS or governance roles changed: <!-- Yes/No and review evidence. -->
+
 ## Validation
 
 - Tests added:
@@ -29,6 +33,8 @@
 - [ ] Affected specifications and ADRs are updated together.
 - [ ] Relative links and changed-file scope were checked.
 - [ ] No secret, credential, private URL, or sensitive report detail is included.
+- [ ] Every GitHub Action uses a full commit SHA and untrusted code receives no write permission or secret.
+- [ ] Dependency changes include synchronized manifest, lock, license, advisory, policy-test, and documentation review.
 
 ## Completion checklist
 

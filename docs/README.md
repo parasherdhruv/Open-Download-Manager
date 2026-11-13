@@ -2,7 +2,7 @@
 
 ## Current status
 
-Open Download Manager is at the **buildable repository scaffold / pre-alpha** milestone. Wave 1 workspace metadata, locks, zero-feature application surfaces, API-free crates, scaffold tests, and local command gates are implemented and locally verified in this unmerged working tree. There is no download engine behavior, persistence, scheduling, filesystem product I/O, browser capture/native messaging, local IPC, media pipeline, AI, telemetry, updater/tray behavior, installer, CI, publishing, or release.
+Open Download Manager is at the **buildable repository scaffold / pre-alpha** milestone. Wave 1 workspace metadata, locks, zero-feature application surfaces, API-free crates, scaffold tests, and local command gates are committed at `4b2aca0`, published as hosted `main`, and locally verified. Roadmap Phase 0 adds governance and continuous-validation definitions on a review branch; private vulnerability reporting, exact branch protection, and the initial four hosted checks are verified. Independent review and merge remain pending. There is no download engine behavior, persistence, scheduling, filesystem product I/O, browser capture/native messaging, local IPC, media pipeline, AI, telemetry, updater/tray behavior, installer, publishing, or release.
 
 ## Document authority
 
@@ -33,11 +33,13 @@ The terms **scaffolded** and **implemented** have the strict meanings defined in
 | [Test plan](TEST_PLAN.md)                     | Test layers, Wave 1 scaffold evidence, fixtures, and milestone validation   | Scaffold tests pass; product suites deferred            |
 | [Release plan](RELEASE_PLAN.md)               | Future quality, security, signing, and publishing gates                     | No release process or distributable artifact            |
 | [Roadmap](ROADMAP.md)                         | Ordered outcomes without delivery promises                                  | Wave 1 implemented locally; acceptance pending          |
+| [Repository governance](../GOVERNANCE.md)     | Maintainers, approvers, required checks, and security-response ownership    | Hosted controls active; independent review pending      |
 
 ## Decision records
 
 - [ADR 0001: Documentation-first repository scaffold](decisions/0001-repository-scaffold.md) - Proposed
 - [ADR 0002: Buildable workspace scaffold](decisions/0002-buildable-workspace-scaffold.md) - Proposed
+- [ADR 0003: Continuous validation and governance](decisions/0003-continuous-validation-and-governance.md) - Proposed
 
 An ADR records a durable decision; it does not prove that the described implementation exists. A user-authorized Proposed same-change ADR governs only its exact drafting scope and is not approved or accepted until review and merge.
 
@@ -45,6 +47,7 @@ An ADR records a durable decision; it does not prove that the described implemen
 
 - [Contributor and agent rules](../AGENTS.md)
 - [Contributing guide](../CONTRIBUTING.md)
+- [Repository governance](../GOVERNANCE.md)
 - [Contributor Covenant](../CODE_OF_CONDUCT.md)
 - [Vulnerability disclosure policy](../SECURITY.md)
 - [Changelog](../CHANGELOG.md)

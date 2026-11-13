@@ -26,6 +26,9 @@
     "rust:test": "cargo test --locked --workspace --all-targets --all-features",
     "rust:build": "cargo build --locked --workspace --all-targets --all-features",
     "tauri:build": "corepack pnpm --filter @odm/desktop exec tauri build --no-bundle -- --locked",
+    "audit:js": "corepack pnpm audit --audit-level high",
+    "licenses:js": "node scripts/check-js-licenses.mjs --pnpm",
+    "audit:rust": "cargo deny --locked check advisories bans licenses sources",
     "check": "corepack pnpm format:check && corepack pnpm lint && corepack pnpm typecheck && corepack pnpm test && corepack pnpm test:e2e && corepack pnpm build && corepack pnpm rust:fmt && corepack pnpm rust:clippy && corepack pnpm rust:test && corepack pnpm rust:build && corepack pnpm tauri:build"
   },
   "devDependencies": {
